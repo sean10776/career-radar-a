@@ -1,0 +1,346 @@
+[
+  // ==========================================================
+  // 1. 頂尖半導體與系統外商 (Dream & Tier-1 Global)
+  // ==========================================================
+  {
+    "id": "nvidia",
+    "name": "NVIDIA (輝達)",
+    "category": "Dream Foreign",
+    "keywords": ["GPU", "Tegra", "Linux BSP", "Display Driver", "System Software"],
+    "known_career_url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite"
+  },
+  {
+    "id": "google",
+    "name": "Google (台灣谷歌)",
+    "category": "Dream Foreign",
+    "keywords": ["Pixel", "ChromeOS", "Linux Kernel", "Embedded FW", "Display"],
+    "known_career_url": "https://www.google.com/about/careers/applications/jobs/results/?location=Taiwan"
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon (Ring / Lab126 / AWS)",
+    "category": "Dream Foreign",
+    "keywords": ["Ring", "Lab126", "Firmware", "Linux BSP", "U-Boot", "Camera SoC"],
+    "known_career_url": "https://www.amazon.jobs/en/search.json?country=TWN"
+  },
+  {
+    "id": "qualcomm",
+    "name": "Qualcomm (高通)",
+    "category": "Tier-1 Foreign",
+    "keywords": ["Snapdragon", "Linux Kernel", "Bootloader", "Display Driver", "Video BSP"],
+    "known_career_url": "https://careers.qualcomm.com/careers/sitemap.xml?domain=qualcomm.com"
+  },
+  {
+    "id": "apple",
+    "name": "Apple (蘋果)",
+    "category": "Tier-1 Foreign",
+    "keywords": ["Embedded Firmware", "Hardware Systems", "MCU", "RTOS"],
+    "known_career_url": "https://jobs.apple.com/zh-tw/search?location=taiwan-TWNC"
+  },
+  {
+    "id": "amd",
+    "name": "AMD (超微)",
+    "category": "Tier-1 Foreign",
+    "keywords": ["GPU Firmware", "Linux DRM Driver", "SoC Bring-up", "VBIOS"],
+    "known_career_url": "https://careers.amd.com/careers-home/jobs"
+  },
+  {
+    "id": "intel",
+    "name": "Intel (英特爾)",
+    "category": "Tier-1 Foreign",
+    "keywords": ["BIOS", "UEFI", "Firmware", "Linux Driver", "BMC"],
+    "known_career_url": "https://intel.wd1.myworkdayjobs.com/External"
+  },
+  {
+    "id": "synopsys",
+    "name": "Synopsys (新思科技)",
+    "category": "Tier-1 Foreign EDA/IP",
+    "keywords": ["IP Driver", "Linux Kernel", "Virtual Prototyping", "PCIe IP"],
+    "known_career_url": "https://careers.synopsys.com/"
+  },
+  {
+    "id": "cadence",
+    "name": "Cadence (益華電腦)",
+    "category": "Tier-1 Foreign EDA/IP",
+    "keywords": ["Emulation", "Firmware", "EDA", "Driver"],
+    "known_career_url": "https://cadence.wd1.myworkdayjobs.com/External_Careers"
+  },
+  {
+    "id": "nxp",
+    "name": "NXP (恩智浦)",
+    "category": "Auto & IC Foreign",
+    "keywords": ["Automotive", "Linux BSP", "i.MX", "Yocto", "ARM Cortex"],
+    "known_career_url": "https://nxp.wd3.myworkdayjobs.com/careers"
+  },
+  {
+    "id": "ti",
+    "name": "Texas Instruments (德州儀器)",
+    "category": "Tier-1 Foreign Semi",
+    "keywords": ["Embedded Processor", "MCU", "Linux Driver", "Motor Control"],
+    "known_career_url": "https://careers.ti.com/"
+  },
+  {
+    "id": "micron",
+    "name": "Micron (美光科技)",
+    "category": "Tier-1 Memory",
+    "keywords": ["Firmware", "SSD", "Storage", "DRAM Validation"],
+    "known_career_url": "https://micron.wd1.myworkdayjobs.com/External"
+  },
+  {
+    "id": "marvell",
+    "name": "Marvell (邁威爾)",
+    "category": "Tier-1 Network/Storage",
+    "keywords": ["Networking SoC", "Linux Kernel", "PCIe", "Storage FW"],
+    "known_career_url": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers"
+  },
+  {
+    "id": "broadcom",
+    "name": "Broadcom (博通)",
+    "category": "Tier-1 Network/Semi",
+    "keywords": ["Switch SDK", "Linux Driver", "PCIe", "PHY FW"],
+    "known_career_url": "https://broadcom.wd1.myworkdayjobs.com/External_Career"
+  },
+  {
+    "id": "arm",
+    "name": "Arm (安謀)",
+    "category": "Tier-1 IP/Architecture",
+    "keywords": ["Cortex-A", "Cortex-M", "System Software", "Zephyr", "Linux"],
+    "known_career_url": "https://careers.arm.com/"
+  },
+
+  // ==========================================================
+  // 2. 台灣 IC 設計龍頭 (Taiwan Top IC Design)
+  // ==========================================================
+  {
+    "id": "mediatek",
+    "name": "MediaTek (聯發科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["Linux Kernel", "BSP", "Display", "TV SoC", "Dimensity", "U-Boot", "Device Driver"],
+    "known_career_url": "https://careers.mediatek.com/zh-tw/jobs"
+  },
+  {
+    "id": "novatek",
+    "name": "Novatek (聯詠科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["Display Driver IC", "TCON", "Linux Driver", "SoC 韌體"],
+    "known_career_url": "https://www.novatek.com.tw/Recruit"
+  },
+  {
+    "id": "realtek",
+    "name": "Realtek (瑞昱半導體)",
+    "category": "Taiwan Top IC",
+    "keywords": ["DisplayPort", "HDMI", "TV SoC", "RTOS", "Linux Driver", "NIC FW"],
+    "known_career_url": "https://recruit.realtek.com/?lang=zh-TW"
+  },
+  {
+    "id": "airoha",
+    "name": "Airoha (達發科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["GNSS", "RTK", "藍牙/藍芽", "無線通訊", "AG3335"],
+    "known_career_url": "https://www.airoha.com/careers"
+  },
+  {
+    "id": "phison",
+    "name": "Phison (群聯電子)",
+    "category": "Taiwan Top IC",
+    "keywords": ["PCIe", "NVMe", "NAND Flash", "SSD 控制晶片", "DMA"],
+    "known_career_url": "https://www.phison.com/zh-tw/careers/"
+  },
+  {
+    "id": "silicon_motion",
+    "name": "Silicon Motion (慧榮科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["SSD Controller", "NAND FW", "PCIe Driver", "UFS"],
+    "known_career_url": "https://www.siliconmotion.com/tw/about/careers"
+  },
+  {
+    "id": "himax",
+    "name": "Himax (奇景光電)",
+    "category": "Taiwan Top IC",
+    "keywords": ["DDIC", "Display", "Timing Controller", "MCU 韌體"],
+    "known_career_url": "https://www.himax.com.tw/careers/"
+  },
+  {
+    "id": "ilitek",
+    "name": "Ilitek (奕力科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["Touch IC", "Display Driver", "MCU Firmware"],
+    "known_career_url": "https://www.ilitek.com/careers/"
+  },
+  {
+    "id": "aspeed",
+    "name": "Aspeed (信驊科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["BMC", "OpenBMC", "Linux Kernel", "AST2600"],
+    "known_career_url": "https://www.aspeedtech.com/career"
+  },
+  {
+    "id": "parade",
+    "name": "Parade (譜瑞科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["DisplayPort", "eDP", "PCIe Retimer", "USB4"],
+    "known_career_url": "https://www.paradetech.com/careers/"
+  },
+  {
+    "id": "richtek",
+    "name": "Richtek (立錡科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["PMIC", "電源管理", "MCU 韌體", "I2C/SMBus"],
+    "known_career_url": "https://www.richtek.com/About%20Richtek/Careers"
+  },
+  {
+    "id": "nuvoton",
+    "name": "Nuvoton (新唐科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["ARM Cortex-M", "MCU", "BMC", "Audio Codec"],
+    "known_career_url": "https://www.nuvoton.com/about-nuvoton/careers/"
+  },
+  {
+    "id": "holtek",
+    "name": "Holtek (盛群半導體)",
+    "category": "Taiwan Top IC",
+    "keywords": ["8-bit/32-bit MCU", "C 語言韌體", "周邊驅動"],
+    "known_career_url": "https://www.holtek.com.tw/careers"
+  },
+  {
+    "id": "elan",
+    "name": "Elan (義隆電子)",
+    "category": "Taiwan Top IC",
+    "keywords": ["觸控晶片", "Touchpad", "MCU 韌體", "指向裝置"],
+    "known_career_url": "https://www.emc.com.tw/emc/tw/recruit"
+  },
+  {
+    "id": "pixart",
+    "name": "PixArt (原相科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["光學感測器", "CMOS Sensor", "嵌入式韌體", "影像介面"],
+    "known_career_url": "https://www.pixart.com/careers"
+  },
+  {
+    "id": "sitronix",
+    "name": "Sitronix (矽創電子)",
+    "category": "Taiwan Top IC",
+    "keywords": ["Display Driver", "DDIC", "車載面板", "MCU 韌體"],
+    "known_career_url": "https://www.sitronix.com.tw/careers/"
+  },
+  {
+    "id": "esmt",
+    "name": "ESMT (晶豪科技)",
+    "category": "Taiwan Top IC",
+    "keywords": ["DRAM/Flash", "Audio Amplifier", "Motor Driver", "MCU 韌體"],
+    "known_career_url": "https://www.esmt.com.tw/careers"
+  },
+
+  // ==========================================================
+  // 3. 台灣伺服器 / 邊緣運算 / 系統大廠
+  // ==========================================================
+  {
+    "id": "wiwynn",
+    "name": "Wiwynn (緯穎科技)",
+    "category": "Server & AI Systems",
+    "keywords": ["BMC 韌體", "OpenBMC", "Linux Kernel", "Power Sequencing", "I2C/IPMI"],
+    "known_career_url": "https://www.wiwynn.com/careers"
+  },
+  {
+    "id": "quanta",
+    "name": "Quanta (廣達電腦 / 雲達 QCT)",
+    "category": "Server & AI Systems",
+    "keywords": ["AI Server", "BMC", "BIOS", "Linux BSP", "Cloud Infrastructure"],
+    "known_career_url": "https://hr.quantatw.com/webrecruit/"
+  },
+  {
+    "id": "wistron",
+    "name": "Wistron (緯創資通)",
+    "category": "Server & AI Systems",
+    "keywords": ["AI 伺服器", "GPU Server", "Linux BSP", "BMC"],
+    "known_career_url": "https://www.wistron.com/careers"
+  },
+  {
+    "id": "inventec",
+    "name": "Inventec (英業達)",
+    "category": "Server & AI Systems",
+    "keywords": ["Server Firmware", "BMC", "UEFI BIOS", "Linux BSP"],
+    "known_career_url": "https://www.inventec.com/tw/career"
+  },
+  {
+    "id": "asus",
+    "name": "ASUS (華碩電腦)",
+    "category": "System & PC",
+    "keywords": ["Linux Kernel", "Android BSP", "ROG Phone", "Embedded FW"],
+    "known_career_url": "https://www.asus.com/tw/about-asus/careers/"
+  },
+  {
+    "id": "pegatron",
+    "name": "Pegatron (和碩聯合)",
+    "category": "System & EMS",
+    "keywords": ["Embedded Linux", "IoT", "車用電子", "MCU 韌體"],
+    "known_career_url": "https://www.pegatroncorp.com/careers"
+  },
+  {
+    "id": "gigabyte",
+    "name": "Gigabyte (技嘉科技)",
+    "category": "Server & Motherboard",
+    "keywords": ["AI Server", "BMC", "BIOS", "Linux Driver"],
+    "known_career_url": "https://www.gigabyte.com/tw/About/Careers"
+  },
+  {
+    "id": "advantech",
+    "name": "Advantech (研華科技)",
+    "category": "IPC & Edge AI",
+    "keywords": ["Industrial Linux", "Yocto", "Linux BSP", "ARM SBC"],
+    "known_career_url": "https://advantech.wd3.myworkdayjobs.com/zh-TW/External"
+  },
+  {
+    "id": "adlink",
+    "name": "ADLINK (凌華科技)",
+    "category": "IPC & Edge AI",
+    "keywords": ["Edge Computing", "Linux BSP", "ROS2", "Yocto"],
+    "known_career_url": "https://www.adlinktech.com/tw/careers"
+  },
+
+  // ==========================================================
+  // 4. 網通 / 穿戴 / 工業控制
+  // ==========================================================
+  {
+    "id": "garmin",
+    "name": "Garmin (台灣國際航電)",
+    "category": "GPS & Wearables",
+    "keywords": ["RTOS", "Linux BSP", "Display Driver", "Sensor (IMU)", "GNSS"],
+    "known_career_url": "https://www.garmin.com.tw/careers/jobs/"
+  },
+  {
+    "id": "delta",
+    "name": "Delta (台達電子)",
+    "category": "Power & Industrial Automation",
+    "keywords": ["伺服馬達驅動", "DSP/MCU C", "PID 控制", "CAN bus"],
+    "known_career_url": "https://careers.deltaww.com/"
+  },
+  {
+    "id": "accton",
+    "name": "Accton (智邦科技)",
+    "category": "Networking",
+    "keywords": ["Switch SDK", "SONiC", "Linux Kernel Driver", "PCIe/I2C"],
+    "known_career_url": "https://www.accton.com.tw/join-accton/"
+  },
+  {
+    "id": "wnc",
+    "name": "WNC (啟碁科技)",
+    "category": "Networking & Auto",
+    "keywords": ["Wi-Fi 7", "5G NR", "Linux BSP", "OpenWrt"],
+    "known_career_url": "https://www.wnc.com.tw/tw/careers"
+  },
+  {
+    "id": "sercomm",
+    "name": "Sercomm (中磊電子)",
+    "category": "Networking",
+    "keywords": ["Router Firmware", "Linux BSP", "OpenWrt"],
+    "known_career_url": "https://www.sercomm.com/career"
+  },
+  {
+    "id": "tsmc",
+    "name": "TSMC (台積電)",
+    "category": "Foundry",
+    "keywords": ["Equipment Automation", "Linux C/C++", "CIM", "SECS/GEM"],
+    "known_career_url": "https://careers.tsmc.com/"
+  }
+]

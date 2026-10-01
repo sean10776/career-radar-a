@@ -1,0 +1,165 @@
+{
+  // ==========================================================
+  // 候選人個人專業畫像 (供 Local LLM 與結構化萃取參考)
+  // ==========================================================
+  "candidate": {
+    "name": "Candidate",
+    "years_of_experience": 3,
+    "target_roles": [
+      "Embedded Software Engineer",
+      "Firmware Engineer",
+      "Linux Kernel Engineer",
+      "BSP Engineer",
+      "Device Driver Engineer"
+    ],
+    "profile_summary": "具備嵌入式系統開發、Linux 驅動程式、SoC Bring-up、RTOS 與底層韌體開發實戰經驗。"
+  },
+
+  // ==========================================================
+  // 職缺關鍵字比對與評分加權系統
+  // ==========================================================
+  "matching": {
+    // 核心高加權關鍵字
+    "core_keywords": [
+      "Linux",
+      "Kernel",
+      "BSP",
+      "Device Driver",
+      "Driver",
+      "Bootloader",
+      "U-Boot",
+      "Display",
+      "DTS",
+      "Device Tree",
+      "Bring-up"
+    ],
+
+    // 輔助關鍵字
+    "secondary_keywords": [
+      "Firmware",
+      "FW",
+      "Embedded",
+      "SoC",
+      "I2C",
+      "SPI",
+      "UART",
+      "PCIe",
+      "DMA",
+      "RTOS",
+      "FreeRTOS",
+      "Zephyr",
+      "ARM",
+      "Cortex",
+      "C/C++",
+      "Git",
+      "Debugging"
+    ],
+
+    // 排除無關職缺關鍵字 (避免雜訊干擾)
+    "exclude_keywords": [
+      "Frontend",
+      "Front-end",
+      "UI/UX",
+      "Marketing",
+      "Sales",
+      "Accountant",
+      "Legal",
+      "Recruiter",
+      "HR",
+      "Facilities",
+      "Mechanical",
+      "會計",
+      "財務",
+      "業務",
+      "行銷",
+      "人資",
+      "招募",
+      "法務",
+      "採購",
+      "總務",
+      "作業員",
+      "技術員",
+      "行政",
+      "機構工程師",
+      "熱傳工程師"
+    ],
+
+    // 目標工作地點
+    "target_locations": [
+      "Taiwan",
+      "Taipei",
+      "Hsinchu",
+      "Zhubei",
+      "New Taipei",
+      "Xizhi",
+      "Taoyuan",
+      "台灣",
+      "台北",
+      "新北",
+      "新竹",
+      "竹北",
+      "汐止",
+      "桃園",
+      "Remote"
+    ],
+
+    // 評分權重
+    "weights": {
+      "core_title": 40,
+      "core_body": 20,
+      "secondary_title": 20,
+      "secondary_body": 10,
+      "location_bonus": 15
+    },
+
+    "min_score": 20,
+    "high_match_score": 45
+  },
+
+  // ==========================================================
+  // Local LLM 設定 (LM Studio / Ollama / OpenAI 相容端點)
+  // ==========================================================
+  "llm": {
+    "enabled": true,
+    // 在 WSL 環境下自動探測 Windows 宿主機 IP
+    "auto_detect_host": true,
+    "endpoint": "http://127.0.0.1:1234/v1",
+    "port": 1234,
+    // 依序推薦模型 (針對 8GB VRAM 優化)
+    "preferred_models": [
+      "4b",
+      "qwen3-8b",
+      "7b",
+      "8b",
+      "9b"
+    ],
+    "temperature": 0.1,
+    "max_tokens": 2500,
+    "timeout_seconds": 45,
+    "probe_timeout_seconds": 1.5
+  },
+
+  // ==========================================================
+  // 檔案與暫存儲存設定
+  // ==========================================================
+  "storage": {
+    // 處理中臨時檔案放置於系統 tmp (Linux: /tmp, Windows: %TEMP%)
+    "use_system_temp": true,
+    "temp_subfolder": "career_radar_processing",
+    "data_filename": "career_radar_data.json",
+    "dashboard_filename": "職缺雷達_即時監控看板.md",
+    // 輸出至 Markdown 看板頂部的導航連結 (選填，例如 [["職缺總表"]] 或 [["投遞進度"]])
+    "navigation_links": []
+  },
+
+  // ==========================================================
+  // 網頁爬取與內容清洗設定
+  // ==========================================================
+  "crawler": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "request_timeout_seconds": 12,
+    "max_text_chars": 8000,
+    // 是否校驗 SSL 憑證 (預設 true)
+    "verify_ssl": true
+  }
+}

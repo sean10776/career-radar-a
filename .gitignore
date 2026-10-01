@@ -1,0 +1,49 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Temporary / Processing files
+tmp/
+*.tmp
+*.log
+
+# Local user configs / databases / environments
+config.jsonc
+config.json
+.env
+.env.*
+career_radar_data.json
+*.db
+*.sqlite3
+
+# Generated dashboards & user reports
+職缺雷達_即時監控看板.md
+*.dashboard.md
+dashboard.md
+
+# Testing and coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# OS and Editor generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo

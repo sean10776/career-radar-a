@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "career-radar"
+version = "1.1.0"
+description = "First-hand Tech & Semiconductor Job Radar powered by Local LLM and Automated Site Discovery"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Sean Kao" }
+]
+keywords = [
+    "job-scraper",
+    "career",
+    "llm",
+    "lm-studio",
+    "ollama",
+    "bsp",
+    "firmware",
+    "linux-kernel",
+    "obsidian",
+    "semiconductor"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Utilities"
+]
+dependencies = []
+
+[project.scripts]
+career-radar = "career_radar.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["career_radar*"]
