@@ -116,7 +116,7 @@ def handle_run(args, config: AppConfig, targets_list: list):
     elif args.limit:
         targets = targets_list[:args.limit]
     else:
-        targets = targets_list[:5]
+        targets = targets_list
 
     all_found_jobs: List[JobOpening] = []
     print(f"📋 即將處理 {len(targets)} 家目標公司...\n")
@@ -208,7 +208,7 @@ def main():
     run_parser = subparsers.add_parser("run", help="反推 Job Site 並透過 Local LLM 解析職缺")
     run_parser.add_argument("--company", "-c", help="指定單一公司名稱或招募連結")
     run_parser.add_argument("--category", help="指定公司類別")
-    run_parser.add_argument("--limit", type=int, help="限制處理公司數量")
+    run_parser.add_argument("--limit", type=int, help="限制處理公司數量 (若未指定則預設處理全部公司)")
     run_parser.add_argument("--endpoint", help="覆寫 LLM API 端點")
     run_parser.add_argument("--model", help="指定使用的 LLM 模型名稱")
     run_parser.add_argument("--output-data", help="自訂 JSON 資料庫輸出路徑")
