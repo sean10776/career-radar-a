@@ -94,6 +94,43 @@ class AgenticHunter:
         valid_jobs.sort(key=lambda x: x.match_score, reverse=True)
         return valid_jobs
 
+    def _discover_workday_location_facets(self, cxs_url: str) -> Dict[str, List[str]]:
+        """
+        主動向 Workday 探測原生 Location Facets (如 Location_Country, locations, locationHierarchy1)
+        自動比對 config.matching.target_locations (如 Taiwan, Taipei, Hsinchu)
+        """
+        applied: Dict[str, List[str]] = {}
+        try:
+            probe_payload = json.dumps({"appliedFacets": {}, "limit": 1, "offset": 0, "searchText": ""}).encode("utf-8")
+            req = urllib.request.Request(
+                cxs_url,
+                data=probe_payload,
+                headers={
+                    "User-Agent": self.crawler_cfg.user_agent,
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            )
+            with urllib.request.urlopen(req, timeout=self.crawler_cfg.request_timeout_seconds, context=self.ctx) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+
+            target_locs = [l.lower() for l in self.matching_cfg.target_locations]
+
+            for facet in data.get("facets", []):
+                param = facet.get("facetParameter", "")
+                matched_ids = []
+                for val in facet.get("values", []):
+                    desc = val.get("descriptor", "").lower()
+                    if any(t in desc for t in target_locs):
+                        fid = val.get("id")
+                        if fid:
+                            matched_ids.append(fid)
+                if matched_ids and any(k in param.lower() for k in ["location", "country"]):
+                    applied[param] = matched_ids
+        except Exception:
+            pass
+        return applied
+
     def _hunt_workday(
         self,
         company_id: str,
@@ -114,19 +151,23 @@ class AgenticHunter:
             site = parts[-1] if parts else "External"
             cxs_url = f"https://{parsed.netloc}/wday/cxs/{tenant}/{site}/jobs"
 
-            # 構建探測關鍵字矩陣 (結合地點與核心專業領域)
-            search_intents = []
-            for kw in self.matching_cfg.core_keywords[:4]:
-                search_intents.append(f"Taiwan {kw}")
-            # 輔助加上純關鍵字查詢（依賴回傳 locationsText 判定）
-            search_intents.extend(self.matching_cfg.core_keywords[:3])
+            # 1. 主動探測 Workday 原生 Location Filter (Facets)
+            location_facets = self._discover_workday_location_facets(cxs_url)
+
+            # 2. 構建探測查詢矩陣：若有原生 Location Filter 則鎖定台灣，否則回退文字查詢
+            if location_facets:
+                search_intents = [""] + self.matching_cfg.core_keywords[:4]
+                applied_filter = location_facets
+            else:
+                search_intents = [f"Taiwan {kw}" for kw in self.matching_cfg.core_keywords[:4]] + self.matching_cfg.core_keywords[:3]
+                applied_filter = {}
 
             for query in search_intents:
                 offset = 0
                 page_size = 20
                 for page in range(max_pages):
                     payload = json.dumps({
-                        "appliedFacets": {},
+                        "appliedFacets": applied_filter,
                         "limit": page_size,
                         "offset": offset,
                         "searchText": query
