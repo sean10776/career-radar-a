@@ -15,6 +15,7 @@ from .llm_client import LocalLLMClient
 from .storage import JobDatabase
 from .exporter import ObsidianExporter
 from .models import JobOpening
+from .agentic_hunter import AgenticHunter
 
 
 def handle_models(args, config: AppConfig):
@@ -118,11 +119,14 @@ def handle_run(args, config: AppConfig, targets_list: list):
     else:
         targets = targets_list
 
+    hunter = AgenticHunter(config=config, llm_client=llm)
+
     all_found_jobs: List[JobOpening] = []
-    print(f"📋 即將處理 {len(targets)} 家目標公司...\n")
+    print(f"📋 即將處理 {len(targets)} 家目標公司 (Agentic 模式)...\n")
 
     for idx, comp in enumerate(targets, 1):
         name = comp["name"]
+        comp_id = comp.get("id", name.lower().replace(" ", "_"))
         db.write_processing_marker(name, f"Processing {idx}/{len(targets)}")
         print(f"[{idx}/{len(targets)}] 🏢 正在處理：{name}")
 
@@ -137,23 +141,37 @@ def handle_run(args, config: AppConfig, targets_list: list):
         rss_tag = f" [發現 RSS: {res['rss_url']}]" if res["has_rss"] else ""
         print(f"   -> 官方招募網址：{job_site}{rss_tag}")
 
-        extract_res = extractor.extract_text(job_site)
-        text_content = extract_res.get("text", "")
-        if not text_content:
-            print("   ⚠️ 網頁文本為空或抓取失敗，跳過")
-            continue
+        max_p = getattr(args, "pages", 3) or 3
+        print(f"   -> 啟動 Agentic 探測 (意圖過濾 + 自動深度翻頁 {max_p} 頁)...")
+        jobs = hunter.hunt_company(
+            company_id=comp_id,
+            company_name=name,
+            job_site_url=job_site,
+            max_pages=max_p
+        )
 
-        print(f"   -> 成功清洗純淨文本 ({len(text_content)} 字元)，送交 LLM 分析...")
-
-        jobs = llm.parse_job_text(company_name=name, site_url=job_site, raw_text=text_content)
-        # 以 config 的權重再次評分
-        for j in jobs:
-            j.evaluate_fit(config=config.matching)
-
-        print(f"   ✅ 挖掘出 {len(jobs)} 筆契合職缺！")
-        for j in jobs[:3]:
-            print(f"      • [{j.match_score}分] {j.title} ({j.location})")
-        all_found_jobs.extend(jobs)
+        if jobs:
+            print(f"   ✅ Agentic 探測成功！挖掘出 {len(jobs)} 筆精準職缺！")
+            for j in jobs[:3]:
+                print(f"      • [{j.match_score}分] {j.title} ({j.location})")
+            all_found_jobs.extend(jobs)
+        else:
+            print("   ℹ️ 進入通用降級模式 (提取文本 + LLM 解析)...")
+            extract_res = extractor.extract_text(job_site)
+            text_content = extract_res.get("text", "")
+            if text_content:
+                jobs = llm.parse_job_text(company_name=name, site_url=job_site, raw_text=text_content)
+                for j in jobs:
+                    j.evaluate_fit(config=config.matching)
+                if jobs:
+                    print(f"   ✅ LLM 解析成功！挖掘出 {len(jobs)} 筆職缺！")
+                    for j in jobs[:3]:
+                        print(f"      • [{j.match_score}分] {j.title} ({j.location})")
+                    all_found_jobs.extend(jobs)
+                else:
+                    print("   ⚠️ 未發現符合條件之職缺")
+            else:
+                print("   ⚠️ 網頁文本為空或抓取失敗，跳過")
 
     db.clear_processing_marker()
 
@@ -209,6 +227,7 @@ def main():
     run_parser.add_argument("--company", "-c", help="指定單一公司名稱或招募連結")
     run_parser.add_argument("--category", help="指定公司類別")
     run_parser.add_argument("--limit", type=int, help="限制處理公司數量 (若未指定則預設處理全部公司)")
+    run_parser.add_argument("--pages", type=int, default=3, help="Agentic 深度翻頁上限 (預設: 3 頁)")
     run_parser.add_argument("--endpoint", help="覆寫 LLM API 端點")
     run_parser.add_argument("--model", help="指定使用的 LLM 模型名稱")
     run_parser.add_argument("--output-data", help="自訂 JSON 資料庫輸出路徑")

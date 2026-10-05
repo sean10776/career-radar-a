@@ -13,6 +13,7 @@ from career_radar.storage import JobDatabase
 from career_radar.extractor import ContentExtractor
 from career_radar.resolver import JobSiteResolver
 from career_radar.exporter import ObsidianExporter
+from career_radar.agentic_hunter import AgenticHunter
 from career_radar.utils.jsonc import parse_jsonc
 from career_radar.utils.platform_net import detect_platform, get_processing_temp_dir
 
@@ -113,6 +114,26 @@ class TestCareerRadar(unittest.TestCase):
         exporter = ObsidianExporter(output_path=str(test_md))
         exporter.export(db)
         self.assertTrue(test_md.exists())
+
+    def test_agentic_hunter_pipeline(self):
+        """驗證 AgenticHunter 之初始化、意圖規劃與評分整合"""
+        config = AppConfig()
+        hunter = AgenticHunter(config=config)
+        self.assertIsNotNone(hunter)
+        self.assertEqual(hunter.matching_cfg.min_score, config.matching.min_score)
+
+        # 驗證特定 ATS 反推與格式生成
+        fake_job = JobOpening(
+            id="nv_test_001",
+            company_id="nvidia",
+            company_name="NVIDIA",
+            title="Senior Firmware Engineer - Tegra",
+            url="https://nvidia.wd5.myworkdayjobs.com/job/001",
+            location="Taiwan, Taipei"
+        )
+        fake_job.evaluate_fit(config.matching)
+        self.assertGreater(fake_job.match_score, 0)
+        self.assertIn("Firmware", fake_job.matched_keywords)
 
 
 if __name__ == "__main__":
